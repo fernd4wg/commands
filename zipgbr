@@ -1,6 +1,6 @@
 #! /bin/bash
 
-ZIPNAME=$1
+ZIPNAME=$(basename "$PWD")
 
 if [[ -z "$1" ]]; then
   echo "Please provide zip name as an argument"
