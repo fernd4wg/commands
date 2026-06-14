@@ -1,14 +1,14 @@
 #! /bin/bash
-REPONAME=$1
 USERNAME=$(ssh -T git@github.com 2>&1 | awk '{print $2}' | tr -d '!')
+DIR=$(basename "$PWD")
 
-if [ -z "$1" ]; then
-  echo "Please provide repo name as argument."
-  exit 1
-fi
+# if [ -z "$1" ]; then
+#   echo "Please provide repo name as argument."
+#   exit 1
+# fi
 
-if ! curl -sf https://github.com/fernd4wg/$REPONAME >/dev/null; then
-  echo "Repo not found. Please create the repo like: https://github.com/$USERNAME/$REPONAME.git"
+if ! curl -sf https://github.com/fernd4wg/$DIR >/dev/null; then
+  echo "Repo not found. Please create the repo like: https://github.com/$USERNAME/$DIR.git"
   exit 1
 fi
 
@@ -16,7 +16,7 @@ git init
 git add .
 git commit -m "Init Commit!"
 git branch -M main
-git remote add origin git@github.com:$USERNAME/$REPONAME.git
+git remote add origin git@github.com:$USERNAME/$DIR.git
 git push -u origin main
 
 echo "Now just add, commit, and push as you please!"

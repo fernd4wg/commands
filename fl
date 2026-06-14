@@ -1,4 +1,0 @@
-#! /bin/bash
-
-cd /mnt/storage/FL24/
-wine FL64.exe
