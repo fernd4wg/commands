@@ -1,0 +1,25 @@
+#! /bin/bash
+
+ZIPNAME=$1
+
+if [[ -z "$1" ]]; then
+  echo "Please provide zip name as an argument"
+  exit 1
+fi
+
+if [[ ! -d "./zips" ]]; then
+  mkdir zips
+fi
+
+shopt -s nullglob
+files=(*.gbr *.drl *.gbrjob)
+shopt -u nullglob
+
+if [[ ${#files[@]} -eq 0 ]]; then
+  echo "No .gbr, .drl, or .gbrjob files found"
+  exit 1
+fi
+
+zip "$ZIPNAME.zip" "${files[@]}"
+rm -f "${files[@]}"
+mv "$ZIPNAME.zip" ./zips
